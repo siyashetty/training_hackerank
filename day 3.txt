@@ -1,0 +1,367 @@
+1. 
+#include<stdio.h>
+#define VAL 2+3
+const int DATA = 2+3;
+void solve()
+{
+int a = VAL * VAL;
+int b = DATA * DATA;
+printf("%d%d",a,b);
+}
+int min()
+{
+solve();
+return 0;
+}
+
+OUTPUT : a = 2+3*2+3 = 11
+         b = 5*5 = 25
+
+2.
+#include<stdio.h>
+void solve()
+{
+printf("%d%d", (023), (23));
+}
+int main()
+{
+solve();
+return 0;
+}
+
+OUTPUT : 23 -> DECIMAL = 2*10^1 + 3*10^0 = 23
+       : 023 -> OCTAL = 2*8^1 + 3*8^0 = 19
+
+3. 
+#include<stdio.h>
+void solve()
+{
+printf("%d%d%d", (076), (28), (0x87));
+}
+int main()
+{
+solve();
+return 0;
+}
+
+OUTPUT : 62 28 135 
+
+4. 
+#include<stdio.h>
+void solve()
+{
+char ch[10] = "abcdefghij";
+int ans = 0;
+for(int i=0; i<10; i++) {
+ans += (ch[i] - 'a');
+}
+printf("%d", ans);
+}
+
+int main()
+{ 
+solve();
+return 0;
+}
+
+OUTPUT : 9*10/2 = 45
+
+[ cplusplus & cppreference ] reference pages
+
+5. FUNCTIONS CODE - PASS BY VALUE 
+
+#include<stdio.h>
+
+double findSecondMaxSalary(double first, double second, double third){
+    double second_max = 0.0;
+    double max = (first > second && first > third) ? first:
+                        (second > third ? second : third);
+    double min = (first < second && first < third) ? first:
+                        (second < third ? second : third);
+    second_max = (first + second + third) - max - min;
+    return second_max;
+}
+
+int main()
+{
+    printf("%.2f", findSecondMaxSalary(10.0,20.0,30.0));
+    return 0;
+}
+
+6. FUNCTIONS PROGRAM - PASS BY REFERENCE 
+
+#include<stdio.h>
+
+double findSecondMaxSalary(double *rfirst, double *rsecond, double *rthird){
+    double second_max = 0.0;
+    double max = ((*rfirst) > (*rsecond) && (*rfirst) > (*rthird)) ? (*rfirst):
+                        ((*rsecond) > (*rthird) ? (*rsecond) : (*rthird));
+    double min = ( (*rfirst) < (*rsecond) && (*rfirst) < (*rthird) ) ? (*rfirst):
+                        ((*rsecond) < (*rthird) ? (*rsecond) : (*rthird));
+    second_max = ( (*rfirst) + (*rsecond) + (*rthird) ) - max - min;
+    return second_max;
+}
+
+int main()
+{
+    double a = 10.0, b = 20.0, c = 30.0;
+    printf("%.2f", findSecondMaxSalary(&a,&b,&c));
+    return 0;
+}
+
+
+7. FACTORIAL 
+
+f(n) 
+    if(n==1) {
+         return 1;
+    }
+    return n * f(n - 1);
+
+8. Arrays 1D - Ascending order
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+#define MAX_SIZE 10000
+
+void readNumbers(int* numbers, int size){
+    for(int I = 0; I < size; I++){
+        scanf("%d", &numbers[I]);
+    }
+}
+void swap(int* first, int* second){
+    int temp = (*first);
+    (*first) = (*second);
+    (*second) = temp;
+        
+}
+
+void sort(int* numbers, int size) {
+    for(int I =0; I < (size - 1); I++) {
+    int MIN_ELE_INDEX = I;
+    for(int J = I + 1; J < size; J++) {
+        if(numbers[J] < numbers[MIN_ELE_INDEX]) {
+             MIN_ELE_INDEX = J;
+        }
+    }
+    if(I != MIN_ELE_INDEX){
+         swap(&numbers[I],&numbers[MIN_ELE_INDEX]);
+    }
+}
+}
+
+
+
+
+void printNumbers(int* numbers, int size){
+    for(int I = 0; I< size; I++){
+        printf("%d\n",numbers[I]);
+    }
+}
+
+int main(){
+    
+    int numbers[MAX_SIZE];
+    int size;
+    scanf("%d",&size);
+    readNumbers(numbers, size);
+    sort(numbers, size);
+    printf("The Sorted array is:\n");
+    printNumbers(numbers, size);
+    return 0;  
+}
+
+9. Arrays 1D - Array insertion
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+#define MAX_SIZE 10000
+
+void readNumbers(int* numbers, int size){
+    for(int I = 0; I < size; I++){
+        scanf("%d",&numbers[I]);
+    }
+}
+void printNumbers(int* numbers, int size){
+    for(int I = 0; I < size; I++){
+        printf("%d\n",numbers[I]);
+    }
+}
+void insert(int* numbers, int size, int position, int new_number){
+    for(int I = size-1; I >= (position - 1); I--){
+        numbers[I+1] = numbers[I];
+    }
+    numbers[position - 1] = new_number;
+}
+
+int main() {
+    int numbers[MAX_SIZE], size, position, new_number;
+    scanf("%d",&size);
+    readNumbers(numbers,size);
+    scanf("%d%d",&position,&new_number);
+    if(position > size){
+        printf("Invalid Input");
+        return 0;
+    }
+    insert(numbers,size,position,new_number);
+    size++;
+    printf("Array after insertion is\n");
+    printNumbers(numbers, size);
+    return 0;
+}
+
+
+10. Arrays 1D - Remove duplicate elements
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+#define MAX_SIZE 10000
+
+void readNumbers(int* numbers, int size){
+    for(int I = 0; I < size; I++){
+        scanf("%d",&numbers[I]);
+    }
+}
+void printNumbers(int* numbers, int size){
+    for(int I = 0; I < size; I++){
+        printf("%d\n",numbers[I]);
+    }
+}
+void removeDuplicates(int* numbers, int* size)
+{
+    for(int I = 0; I < (*size); I++){
+        for(int J = I + 1; J < (*size); J++){
+            if(numbers[J] == numbers[I]){
+                for(int K=J+1; K < (*size); K++){
+                    numbers[K-1] = numbers[K]; 
+                }
+            
+            (*size)--;
+            J--;
+        }
+         
+    }
+}
+}
+
+int main() {
+    int numbers[MAX_SIZE], size;
+    scanf("%d",&size);
+    readNumbers(numbers, size);
+    removeDuplicates(numbers, &size);
+    printNumbers(numbers, size);
+    return 0;
+}
+
+11. Arrays 2D - Maximum element in each column
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+#define ROW_MAX_SIZE 100
+#define COL_MAX_SIZE 100
+
+void readMatrix(int num_matrix[][COL_MAX_SIZE], int row_size, int col_size){
+    for(int R=0; R < row_size; R++){
+        for(int C=0; C < col_size; C++){
+            scanf("%d", &num_matrix[R][C]);
+        }
+        
+    }
+   
+    
+}
+void printMatrixColElements(int num_matrix[][COL_MAX_SIZE], int row_size, int col_size){
+    int maxElements[COL_MAX_SIZE] = { };
+    for(int R=0; R < row_size; R++){
+        for(int C=0; C < col_size; C++){
+            if(num_matrix[R][C] > maxElements[C]) {
+                maxElements[C] = num_matrix[R][C];
+            }
+        }
+    }
+    for(int C=0; C < col_size; C++) {
+        printf("%d\n", maxElements[C]);
+    }
+}
+
+int main() {
+    int num_matrix[ROW_MAX_SIZE][COL_MAX_SIZE];
+    int row_size, col_size;
+    scanf("%d%d", &row_size, &col_size);
+    readMatrix(num_matrix, row_size, col_size);
+    printMatrixColElements(num_matrix, row_size, col_size);
+    return 0;
+}
+
+12. Palindrome number 
+
+bool isPalindrome(int x){
+    int bX = x;
+    if(x < 0) {
+        return false;
+    }
+    long long int R = 0L;
+    while(bX > 0L){
+        
+    }
+}
+
+
+13. Recursion - Number of digits
+
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+
+// Function to count the number of digits using recursion
+int countDigits(int number) {
+    // Base case: if the number is 0, it has 0 digits
+    if (number == 0) {
+        return 0;
+    } else {
+        // Recursive case: strip off the last digit and count the remaining digits
+        return 1 + countDigits(number / 10);
+    }
+}
+
+int main() {
+    int number;
+    scanf("%d", &number);
+    int originalNumber = number;
+    if (number == 0) {
+        printf("The number of digits in %d is 1\n", number);
+    } else
+    {
+        if (number < 0) {
+            number = -number;
+    }
+
+        int numDigits = countDigits(number);
+        printf("The number of digits in %d is %d\n", originalNumber, numDigits);
+    }
+
+    return 0;
+}
+
+
+
+
+
+      
+
+
+
+
+
+

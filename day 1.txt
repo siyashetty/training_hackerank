@@ -1,0 +1,87 @@
+1. Input & Output - Say "Hello, World!"
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int main() {
+
+   printf("\"Hello, World!\"\n");  
+    return 0;
+}
+
+
+2. Input & Output - Hello World with tab
+
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int main() {
+    printf("Hello World\tHello World\n");
+    return 0;
+}
+
+
+3. Input & Output - Hello World with a new line
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int main() {
+
+    printf("Hello World\nHello World\n");   
+    return 0;
+}
+
+
+4. Operators - Harry Potter
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int main() {
+    int num;
+    scanf("%d",&num);
+    if(num < 0){
+        num = -num;
+    }
+    int first = num / 1000;
+    int last = num % 10;
+    int sum = first + last;
+    printf("%d",sum);
+      
+    return 0;
+}
+
+
+5. Operators - Debt Repay
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int main() {
+   float principle,years,roi;
+   float interest,amount,discount,net_amount;
+   scanf("%f%f%f", &principle, &years, &roi);
+    interest = (principle * years * roi) / 100.0;
+    amount = principle + interest;
+    discount = interest * 0.02;
+    net_amount = amount - discount;
+    printf("%.2f\n%.2f\n%.2f\n%.2f\n",interest,amount,discount,net_amount);
+    
+    return 0;
+}
+
+
+
+

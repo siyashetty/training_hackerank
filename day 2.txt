@@ -1,0 +1,227 @@
+1. Operators - Splitting into the teams
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int main() {
+    int totalFriends, numberOfTeams, friendsPerTeam, leftOutFriends;
+    
+   // printf("Enter the total number of friends: ");
+    scanf("%d", &totalFriends);
+    
+    //printf("Enter the number of teams: ");
+    scanf("%d", &numberOfTeams);
+    
+    friendsPerTeam = totalFriends / numberOfTeams;
+    leftOutFriends = totalFriends % numberOfTeams;
+    
+    printf("The number of friends in each team is %d and left out is %d\n", friendsPerTeam, leftOutFriends);
+    
+    return 0;
+}
+
+
+2. Operators - Reverse a 3-digit number
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int main() {
+    int number, reversedNumber = 0;
+
+   
+    scanf("%d", &number);
+
+   
+    if (number < 100 || number > 999) {
+        printf("Please enter a valid 3-digit number.\n");
+        return 1;
+    }
+
+ 
+    reversedNumber += (number % 10) * 100; 
+    number /= 10;
+    reversedNumber += (number % 10) * 10;  
+    number /= 10;
+    reversedNumber += number;              
+
+    printf("%d\n", reversedNumber);
+
+    return 0;
+}
+
+
+3. Decision Making - Checking Alphabets
+
+#include <stdio.h>
+#include <ctype.h>
+
+int main() {
+    char ch;
+    
+    // Prompt the user to enter a character
+    printf("Enter a character: ");
+    scanf("%c", &ch);
+    
+    // Check if the character is an alphabet
+    if (isalpha(ch)) {
+        // Convert character to lowercase for uniformity
+        ch = tolower(ch);
+
+        // Check if the character is a vowel
+        if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
+            printf("Vowel\n");
+        } else {
+            printf("Consonant\n");
+        }
+    } else {
+        printf("The character '%c' is not an alphabet.\n", ch);
+    }
+    
+    return 0;
+}
+
+
+4. Decision Making - Trendy number
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int main() {
+    int num;
+    scanf("%d",&num);
+    if(!(100 <= num && num <= 999)) {
+        printf("Invalid Number");
+        return 0;
+    }
+    
+    if(((num/10)%10) % 3 == 0) {
+        printf("Trendy Number");
+    }else{
+        printf("Not a Trendy Number");
+    }
+    return 0;
+    
+}
+
+5. Employees
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+#define MAX_SIZE 10000
+
+struct _emp_t {
+    int emp_no;
+    char name[255];
+    float salary;
+};
+typedef struct _emp_t emp_t;
+
+void readEmployees(emp_t* employees, int size){
+    for(int I = 0; I < size; I++){
+        scanf("%d%s%f", &employees[I].emp_no,
+                        employees[I].name,
+                        &employees[I].salary);
+    }
+}
+void swap(emp_t* first, emp_t* second){
+    emp_t temp = (*first);
+    (*first) = (*second);
+    (*second) = temp;
+        
+}
+
+void sort(emp_t* employees, int size) {
+    for(int I =0; I < (size - 1); I++) {
+    int MIN_ELE_INDEX = I;
+    for(int J = I + 1; J < size; J++) {
+        if(employees[J].salary < employees[MIN_ELE_INDEX].salary) {
+             MIN_ELE_INDEX = J;
+        }
+    }
+    if(I != MIN_ELE_INDEX){
+         swap(&employees[I],&employees[MIN_ELE_INDEX]);
+    }
+}
+}
+
+
+
+
+void printEmployees(emp_t* employees, int size){
+    for(int I = 0; I< size; I++){
+        printf("[num=%d,name=%s,sal=%.2f]\n", employees[I].emp_no,
+                                            employees[I].name,
+                                            employees[I].salary);
+    }
+}
+
+int main(){
+    
+    emp_t employees[MAX_SIZE];
+    int size;
+    scanf("%d",&size);
+    readEmployees(employees, size);
+    sort(employees, size);
+    printf("The Sorted array is:\n");
+    printEmployees(employees, size);
+    return 0;  
+}
+
+6. Selection sort algorithm(ascending order):
+
+int size;
+for(int I =0; I < (size - 1); I++) {
+    int MIN_ELE_INDEX = I;
+    for(int J = I + 1; J < size; J++) {
+        if(numbers[j] < numbers[MIN_ELE_INDEX]) {
+             MIN_ELE_INDEX = J;
+        }
+    }
+    if(I != MIN_ELE_INDEX){
+         swap(&numbers[I],&numbers[MIN_ELE_INDEX]);
+    }
+}
+// print sorted numbers 
+
+7. Control Statements - Sum of digit till single digit
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+long long int sod(long long int num) {
+    int S = 0;
+    while(num > 0){
+        S += num % 10;
+        num = num / 10;
+    }
+    return S;
+}
+
+int main() {
+    
+    long long int N;
+    scanf("%lld",&N);
+    long long int sum = sod(N);
+    if(sum > 9){
+        sum = sod(sum);
+    }
+     printf("%lld",sum);  
+     return 0;
+}
+
+
+
+
+
+
+
