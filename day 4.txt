@@ -1,0 +1,558 @@
+1. STACK 
+
+#include<stdio.h>
+#define MAX_SIZE 5
+#define E_T_DEFAULT 0.0f
+typedef float E_t; 
+typedef int BOOL; 
+
+int top_index = -1;
+E_t items[MAX_SIZE];
+
+BOOL empty() {
+    return (top_index == -1);
+}
+
+E_t top() {
+    if(empty()){
+        printf("Stack Empty");
+        return E_T_DEFAULT;
+    }
+
+    return items[top_index];
+}
+
+BOOL full() {
+    return (top_index == MAX_SIZE-1);
+}
+int size() {
+    return top_index + 1;
+}
+
+void push(E_t item) {
+    if(full()) {
+        printf("Stack Full\n");
+        return;
+    }
+    top_index++;
+    items[top_index] = item;
+}
+void pop() {
+    if(empty()) {
+        printf("Stack Empty\n");
+        return;
+    }
+    items[top_index] = E_T_DEFAULT;
+    top_index--;
+}
+
+int main () {
+    push(2000.0f);
+    push(3000.0f);
+    push(5000.0f);
+    push(3500.0f);
+    push(2500.0f);
+    push(1500.0f);
+
+    printf("%.2f ", top()); pop();
+    printf("%.2f ", top()); pop();
+    printf("%.2f ", top()); pop();
+    printf("%.2f ", top()); pop();
+    printf("%.2f ", top()); pop();
+    printf("%.2f ", top()); pop();
+    return 0;
+}
+
+
+2. STACK WITH STRUCT
+
+#include<stdio.h>
+#define MAX_SIZE 5
+#define E_T_DEFAULT 0.0f
+typedef float E_t; 
+typedef int BOOL; 
+
+struct _stack_t {
+    int top_index;
+    E_t items[MAX_SIZE];
+};
+typedef struct _stack_t stack_t;
+
+stack_t stack = {-1,{}};
+
+BOOL empty() {
+    return (stack.top_index == -1);
+}
+
+E_t top() {
+    if(empty()){
+        printf("Stack Empty");
+        return E_T_DEFAULT;
+    }
+
+    return stack.items[stack.top_index];
+}
+
+BOOL full() {
+    return (stack.top_index == MAX_SIZE-1);
+}
+int size() {
+    return stack.top_index + 1;
+}
+
+void push(E_t item) {
+    if(full()) {
+        printf("Stack Full\n");
+        return;
+    }
+    stack.top_index++;
+    stack.items[stack.top_index] = item;
+}
+void pop() {
+    if(empty()) {
+        printf("Stack Empty\n");
+        return;
+    }
+    stack.items[stack.top_index] = E_T_DEFAULT;
+    stack.top_index--;
+}
+
+int main () {
+    push(2000.0f);
+    push(3000.0f);
+    push(5000.0f);
+    push(3500.0f);
+    push(2500.0f);
+    push(1500.0f);
+
+    printf("%.2f ", top()); pop();
+    printf("%.2f ", top()); pop();
+    printf("%.2f ", top()); pop();
+    printf("%.2f ", top()); pop();
+    printf("%.2f ", top()); pop();
+    printf("%.2f ", top()); pop();
+    return 0;
+}
+
+3. STACK (salary)
+
+#include<stdio.h>
+#define MAX_SIZE 5
+#define E_T_DEFAULT 0.0f
+typedef float E_t; 
+typedef int BOOL; 
+
+struct _stack_t {
+    int top_index;
+    E_t items[MAX_SIZE];
+};
+typedef struct _stack_t stack_t;
+
+//stack_t stack = {-1,{}};
+
+BOOL empty(stack_t *rstack) {
+    return (rstack->top_index == -1);
+}
+
+E_t top(stack_t *rstack) {
+    if(empty(rstack)){
+        printf("Stack Empty");
+        return E_T_DEFAULT;
+    }
+
+    return rstack->items[rstack->top_index];
+}
+
+BOOL full(stack_t *rstack) {
+    return (rstack->top_index == MAX_SIZE-1);
+}
+int size(stack_t *rstack) {
+    return rstack->top_index + 1;
+}
+
+void push(stack_t *rstack, E_t item) {
+    if(full(rstack)) {
+        printf("Stack Full\n");
+        return;
+    }
+    rstack->top_index++;
+    rstack->items[rstack->top_index] = item;
+}
+void pop(stack_t *rstack) {
+    if(empty(rstack)) {
+        printf("Stack Empty\n");
+        return;
+    }
+    rstack->items[rstack->top_index] = E_T_DEFAULT;
+    rstack->top_index--;
+}
+
+int main () {
+    stack_t salary_stack = {-1,{}};
+    push(&salary_stack, 2000.0f);
+    push(&salary_stack, 3000.0f);
+    push(&salary_stack, 5000.0f);
+    push(&salary_stack, 3500.0f);
+    push(&salary_stack, 2500.0f);
+    push(&salary_stack, 1500.0f);
+
+    printf("%.2f ", top(&salary_stack)); pop(&salary_stack);
+    printf("%.2f ", top(&salary_stack)); pop(&salary_stack);
+    printf("%.2f ", top(&salary_stack)); pop(&salary_stack);
+    printf("%.2f ", top(&salary_stack)); pop(&salary_stack);
+    printf("%.2f ", top(&salary_stack)); pop(&salary_stack);
+    printf("%.2f ", top(&salary_stack)); pop(&salary_stack);
+
+    stack_t price_stack = {-1,{}};
+    push(&price_stack, 20.0f);
+    push(&price_stack, 35.0f);
+    push(&price_stack, 40.0f);
+    push(&price_stack, 15.0f);
+    push(&price_stack, 30.0f);
+    push(&price_stack, 75.0f);
+
+    printf("%.2f ", top(&price_stack)); pop(&price_stack);
+    printf("%.2f ", top(&price_stack)); pop(&price_stack);
+    printf("%.2f ", top(&price_stack)); pop(&price_stack);
+    printf("%.2f ", top(&price_stack)); pop(&price_stack);
+    printf("%.2f ", top(&price_stack)); pop(&price_stack);
+    printf("%.2f ", top(&price_stack)); pop(&price_stack);
+
+    
+    return 0;
+}
+
+
+4. STACK [main.c] 
+
+#include<stdio.h>
+#include"stack.h"
+int main () {
+    stack_t salary_stack = {-1,{}};
+    push(&salary_stack, 2000.0f);
+    push(&salary_stack, 3000.0f);
+    push(&salary_stack, 5000.0f);
+    push(&salary_stack, 3500.0f);
+    push(&salary_stack, 2500.0f);
+    push(&salary_stack, 1500.0f);//!!!
+
+    printf("%.2f ", top(&salary_stack)); pop(&salary_stack);
+    printf("%.2f ", top(&salary_stack)); pop(&salary_stack);
+    printf("%.2f ", top(&salary_stack)); pop(&salary_stack);
+    printf("%.2f ", top(&salary_stack)); pop(&salary_stack);
+    printf("%.2f ", top(&salary_stack)); pop(&salary_stack);
+    printf("%.2f ", top(&salary_stack)); pop(&salary_stack);//!!!
+
+    stack_t price_stack = {-1,{}};
+    push(&price_stack, 20.0f);
+    push(&price_stack, 35.0f);
+    push(&price_stack, 40.0f);
+    push(&price_stack, 15.0f);
+    push(&price_stack, 30.0f);
+    push(&price_stack, 75.0f);//!!!
+
+    printf("%.2f ", top(&price_stack)); pop(&price_stack);
+    printf("%.2f ", top(&price_stack)); pop(&price_stack);
+    printf("%.2f ", top(&price_stack)); pop(&price_stack);
+    printf("%.2f ", top(&price_stack)); pop(&price_stack);
+    printf("%.2f ", top(&price_stack)); pop(&price_stack);
+    printf("%.2f ", top(&price_stack)); pop(&price_stack);//!!!
+
+    
+    return 0;
+}
+
+5. STACK [stack.c] 
+
+#include<stdio.h>
+#include "stack.h"
+
+BOOL empty(stack_t *rstack) {
+    return (rstack->top_index == -1);
+}
+
+E_t top(stack_t *rstack) {
+    if(empty(rstack)){
+        printf("Stack Empty");
+        return E_T_DEFAULT;
+    }
+
+    return rstack->items[rstack->top_index];
+}
+
+BOOL full(stack_t *rstack) {
+    return (rstack->top_index == MAX_SIZE-1);
+}
+int size(stack_t *rstack) {
+    return rstack->top_index + 1;
+}
+
+void push(stack_t *rstack, E_t item) {
+    if(full(rstack)) {
+        printf("Stack Full\n");
+        return;
+    }
+    rstack->top_index++;
+    rstack->items[rstack->top_index] = item;
+}
+void pop(stack_t *rstack) {
+    if(empty(rstack)) {
+        printf("Stack Empty\n");
+        return;
+    }
+    rstack->items[rstack->top_index] = E_T_DEFAULT;//
+    rstack->top_index--;
+}
+
+6. STACK [stack.h]
+
+#define MAX_SIZE 5
+#define E_T_DEFAULT 0.0f
+typedef float E_t; 
+typedef int BOOL; 
+
+struct _stack_t {
+    int top_index;
+    E_t items[MAX_SIZE];
+};
+typedef struct _stack_t stack_t;
+
+BOOL empty(stack_t *rstack);
+E_t top(stack_t *rstack);
+BOOL full(stack_t *rstack);
+int size(stack_t *rstack);
+void push(stack_t *rstack, E_t item);
+void pop(stack_t *rstack);
+
+7. QUEUE USING STACKS
+
+
+typedef struct {
+    int top_index;
+    int items[1000];
+} MyStack;
+
+bool myStackEmpty(MyStack* obj);
+MyStack* myStackCreate() {
+    MyStack* rstack = (MyStack*)malloc(sizeof(MyStack));
+    rstack->top_index = -1;
+    return rstack;
+}
+
+void myStackPush(MyStack* obj, int x) {
+    obj->top_index++;
+    obj->items[obj->top_index] = x;
+}
+
+int myStackPop(MyStack* obj) {
+    if(myStackEmpty(obj)){
+        return -1;
+    }
+    int peek = obj->items[obj->top_index];
+    obj->top_index--;
+    return peek;
+}
+
+int myStackPeek(MyStack* obj) {
+    if(myStackEmpty(obj)){
+        return -1;
+    }
+    int peek = obj->items[obj->top_index];
+    return peek;
+}
+
+bool myStackEmpty(MyStack* obj) {
+    return obj->top_index == -1;
+}
+
+void myStackFree(MyStack* obj) {
+    free(obj);
+    obj = NULL;
+}
+
+typedef struct {
+    MyStack* rstack1;
+    MyStack* rstack2;
+} MyQueue;
+
+
+MyQueue* myQueueCreate() {
+    MyQueue* rqueue = (MyQueue*)malloc(sizeof(MyQueue));
+    rqueue->rstack1 = myStackCreate();
+    rqueue->rstack2 = myStackCreate();
+    return rqueue;
+}
+
+void myQueuePush(MyQueue* obj, int x) {
+    myStackPush(obj->rstack1,x);
+}
+
+int myQueuePop(MyQueue* obj) {
+    //copy stack1 to stack2
+    if(myStackEmpty(obj->rstack2)){
+        while(!myStackEmpty(obj->rstack1)){
+            myStackPush(obj->rstack2,
+                myStackPop(obj->rstack1));
+        }
+    }
+    //
+    if(!myStackEmpty(obj->rstack2)){
+        return myStackPop(obj->rstack2);
+    }
+
+    return -1;//??
+}
+
+int myQueuePeek(MyQueue* obj) {
+    //copy stack1 to stack2
+    if(myStackEmpty(obj->rstack2)){
+        while(!myStackEmpty(obj->rstack1)){
+            myStackPush(obj->rstack2,
+                myStackPop(obj->rstack1));
+        }
+    }
+    //
+    if(!myStackEmpty(obj->rstack2)){
+        return myStackPeek(obj->rstack2);
+    }
+
+    return -1;//??
+}
+
+bool myQueueEmpty(MyQueue* obj) {
+    return myStackEmpty(obj->rstack1) 
+        && myStackEmpty(obj->rstack2); 
+}
+
+void myQueueFree(MyQueue* obj) {
+    myStackFree(obj->rstack1);
+    myStackFree(obj->rstack2);
+    free(obj);
+    obj = NULL;
+}
+
+
+8. QUEUE USING STACKS USING C++
+
+class MyQueue {
+    stack<int> stack1;
+    stack<int> stack2;
+public:
+    MyQueue() {
+        
+    }
+    
+    void push(int x) {
+        stack1.push(x);
+    }
+    
+    int pop() {
+        if(stack2.empty()){
+            while(!stack1.empty()){
+                stack2.push(stack1.top());
+                stack1.pop();
+            }
+        }
+        if(stack2.empty()){
+            return -1;
+        }
+        int pop_data = stack2.top();
+        stack2.pop();
+        return pop_data;
+    }
+    
+    int peek() {
+        if(stack2.empty()){
+            while(!stack1.empty()){
+                stack2.push(stack1.top());
+                stack1.pop();
+            }
+        }
+        if(stack2.empty()){
+            return -1;
+        }
+        return stack2.top();
+    }
+    
+    bool empty() {
+        return stack1.empty() && stack2.empty();
+    }
+};
+
+
+9. STACK USING QUEUES 
+
+//leetcode 
+class MyStack {
+    queue<int> q1;
+    queue<int> q2;
+public:
+    MyStack() {
+        
+    }
+    
+    void push(int x) {
+        q1.push(x);
+    }
+    
+    int pop() {
+        if(q1.empty()){
+            return -1;
+        }
+
+        while(q1.size() > 1){
+            q2.push(q1.front()); q1.pop();
+        }
+
+        int peek_data = q1.front(); q1.pop();
+        //swap q1 and q2 
+        queue<int> t = q1;
+        q1 = q2;
+        q2 = t; 
+        return peek_data;
+    }
+    
+    int top() {
+        if(q1.empty()){
+            return -1;
+        }
+
+        while(q1.size() > 1){
+            q2.push(q1.front()); q1.pop();
+        }
+
+        int peek_data = q1.front(); 
+        q2.push(peek_data); q1.pop();
+        //swap q1 and q2 
+        queue<int> t = q1;
+        q1 = q2;
+        q2 = t; 
+        return peek_data;
+    }
+    
+    bool empty() {
+        return q1.empty();
+    }
+};
+
+
+
+ 
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
